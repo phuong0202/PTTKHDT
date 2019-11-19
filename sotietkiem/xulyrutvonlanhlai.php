@@ -116,9 +116,9 @@ if(isset($_GET['masolanh']) && isset($_GET['k']))
 if(isset($_GET['tenkhachhanglanh']) && isset( $_REQUEST['masolanh']) && isset($_GET['h']))
 {
     $conn5=connect();
-    $sql5="SELECT * FROM sotietkiem WHERE maso=".$_REQUEST['masolanh']." AND tenkh='".$_REQUEST['tenkhachhanglanh']."'";
+    $sql5="SELECT * FROM  sotietkiem as so , khachhang as kh WHERE kh.makh=so.makh and maso=".$_REQUEST['masolanh']." AND tenkh='".$_REQUEST['tenkhachhanglanh']."'";
     $result5 = $conn5->query($sql5);
-    //echo $sql1;
+    echo $sql5;
 	if($result5->num_rows > 0)
 	{
 		echo 'Tên khách hàng đúng';
@@ -132,9 +132,9 @@ if(isset($_GET['tenkhachhanglanh']) && isset( $_REQUEST['masolanh']) && isset($_
 if(isset($_GET['tenkhachhanglanh']) && isset( $_REQUEST['masolanh']) && isset($_REQUEST['sotienlanh']))
 {
     $conn6=connect();
-    $sql6="SELECT * FROM sotietkiem WHERE maso=".$_REQUEST['masolanh']." AND tenkh='".$_REQUEST['tenkhachhanglanh']."' AND sotienlai>='".$_REQUEST['sotienlanh']."'";
+    $sql6="SELECT * FROM sotietkiem WHERE maso=".$_REQUEST['masolanh']."  AND sotienlai>='".$_REQUEST['sotienlanh']."'";
     $result6 = $conn6->query($sql6);
-    //echo $sql3;
+    echo $sql6;
 	if($result6->num_rows > 0)
 	{
 		echo 'Số dư thích hợp';
