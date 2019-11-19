@@ -66,8 +66,30 @@
 							xmlhttp.onreadystatechange = function() {
 								(this.readyState == 4 && this.status == 200) 
 								document.getElementById("kq").innerHTML = this.responseText;}
-								xmlhttp.open("GET", "xulymosoguivon.php?maso="+str, true);
+								xmlhttp.open("GET", "xulymosoguivon.php?maso="+str+"&k=1", true);
 								xmlhttp.send();
     }
-
+	//kiểm tra tên khách hàng gửi vốn
+	function kttenkhachhang(str){
+        var maso=document.getElementById("maso1").value;
+        var xmlhttp = new XMLHttpRequest();
+							xmlhttp.onreadystatechange = function() {
+								(this.readyState == 4 && this.status == 200) 
+								document.getElementById("kqtenkh").innerHTML = this.responseText;}
+								xmlhttp.open("GET", "xulymosoguivon.php?maso="+maso+"&tenkhachhang="+str+"&h=1", true);
+								xmlhttp.send();
+    
+    }
+	//kiểm tra số CMND gửi tiền cho khách hàng mới
+	function ktCMND(str)
+	{
+		var xmlhttp = new XMLHttpRequest();
+		var tenkh=document.getElementById("tenkh").value;
+		
+							xmlhttp.onreadystatechange = function() {
+								(this.readyState == 4 && this.status == 200) 
+								document.getElementById("ktcmnd").innerHTML = this.responseText;}
+								xmlhttp.open("GET", "xulymosoguivon.php?tenkhachhang="+tenkh+"&CMND="+str, true);
+								xmlhttp.send();
+	}
 </script>

@@ -171,11 +171,11 @@ else
 	?>
 		<label for="job">Mã khách hàng:</label>
 		
-		<input type="text" name="dskh" id="dskh">
+		<input type="text" name="dskh" id="dskh" required="" autofocus="">
 			</optgroup>
 		</select>
 		<label for="job">Số tiền gửi:</label>
-		<input type="text" name="sotiengui" id="sotiengui" placeholder="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
+		<input type="text" name="sotiengui" id="sotiengui" placeholder="" required="" autofocus="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
 		<label for="job">Ngày gửi:</label>
 		<input type="text" name="ngaygui" id="datemoso" placeholder="">
 		<label for="job">Loại sổ tiết kiệm</label>
@@ -245,9 +245,11 @@ else
 	?>
 		
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ">
+		<input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" pattern="[a-zA-Z]{1,25}" title="Tên khách hàng chứa ký tự lạ" >
+		
 		<label for="job">Số chứng minh nhân dân:</label>
-		<input type="text" name="socmnd" id="socmnd" placeholder="" required="" autofocus="" pattern="[0-9]{9}|[0-9]{11}" title="Số CMND không hợp lệ">
+		<input type="text" name="socmnd" id="socmnd" placeholder="" required="" autofocus="" pattern="[0-9]{9}|[0-9]{11}" title="Số CMND không hợp lệ" onchange="ktCMND(this.value)">
+		<div id="ktcmnd"></div>
 		<label for="job">Địa chỉ:</label>
 		<input type="text" name="diachi" id="diachi" placeholder="" required="" autofocus="">
 		<label for="job">Số tiền gửi:</label>
@@ -292,12 +294,13 @@ else
 		<fieldset>
 		<legend><span class="number">2</span> <p>Phiếu gửi tiền</p></legend>
 		<label for="job" >Mã sổ tiết kiệm:</label>
-		<input type="text" name="maso" id="maso1" placeholder="" onkeyup="ktmasoguivon(this.value)">
+		<input type="text" name="maso" id="maso1" placeholder="" required="" autofocus="" onkeyup="ktmasoguivon(this.value)">
 		<div id="kq"></div>
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" >
+		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" onkeyup="kttenkhachhang(this.value)" >
+		<div id="kqtenkh"></div>
 		<label for="job">Số tiền gửi:</label>
-		<input type="text" name="sotiengui2" id="sotiengui2" placeholder="">
+		<input type="text" name="sotiengui2" id="sotiengui2" placeholder="" required="" autofocus="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
 		<label for="job">Ngày gửi:</label>
 		<input type="text" name="datemoso" id="datemoso2" placeholder="">
 		      
