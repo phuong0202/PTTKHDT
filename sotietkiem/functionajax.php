@@ -59,5 +59,15 @@
 								xmlhttp.open("GET", "xulyrutvonlanhlai.php?masolanh="+maso+"&tenkhachhanglanh="+tenkh+"&sotienlanh="+str, true);
 								xmlhttp.send();
     }
+	//kiểm tra mã sổ gửi vốn
+    function ktmasoguivon(str){
+        
+        var xmlhttp = new XMLHttpRequest();
+							xmlhttp.onreadystatechange = function() {
+								(this.readyState == 4 && this.status == 200) 
+								document.getElementById("kq").innerHTML = this.responseText;}
+								xmlhttp.open("GET", "xulymosoguivon.php?maso="+str, true);
+								xmlhttp.send();
+    }
 
 </script>

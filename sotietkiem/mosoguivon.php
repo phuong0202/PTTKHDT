@@ -1,4 +1,6 @@
-<?php include('config.php');?>
+<?php include('config.php');
+require 'functionajax.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -173,7 +175,7 @@ else
 			</optgroup>
 		</select>
 		<label for="job">Số tiền gửi:</label>
-		<input type="text" name="sotiengui" id="sotiengui" placeholder="">
+		<input type="text" name="sotiengui" id="sotiengui" placeholder="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
 		<label for="job">Ngày gửi:</label>
 		<input type="text" name="ngaygui" id="datemoso" placeholder="">
 		<label for="job">Loại sổ tiết kiệm</label>
@@ -243,15 +245,15 @@ else
 	?>
 		
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh" placeholder="">
+		<input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ">
 		<label for="job">Số chứng minh nhân dân:</label>
-		<input type="text" name="socmnd" id="socmnd" placeholder="">
+		<input type="text" name="socmnd" id="socmnd" placeholder="" required="" autofocus="" pattern="[0-9]{9}|[0-9]{11}" title="Số CMND không hợp lệ">
 		<label for="job">Địa chỉ:</label>
-		<input type="text" name="diachi" id="diachi" placeholder="">
+		<input type="text" name="diachi" id="diachi" placeholder="" required="" autofocus="">
 		<label for="job">Số tiền gửi:</label>
-		<input type="text" name="sotiengui" id="sotiengui1" placeholder="">
+		<input type="text" name="sotiengui" id="sotiengui1" placeholder="" required="" autofocus="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
 		<label for="job">Ngày gửi:</label>
-		<input type="text" name="ngaygui" id="datemoso1" placeholder="">
+		<input type="text" name="ngaygui" id="datemoso1" placeholder="" required="" autofocus="">
 		<label for="job">Loại sổ tiết kiệm</label>
 		<select for="job" name="loaiso" id="loaiso1">
 		<optgroup label="loại sổ">
@@ -289,10 +291,11 @@ else
 		<form onsubmit="return guivon()" method="POST">
 		<fieldset>
 		<legend><span class="number">2</span> <p>Phiếu gửi tiền</p></legend>
-		<label for="job">Mã sổ tiết kiệm:</label>
-		<input type="text" name="maso" id="maso1" placeholder="">
+		<label for="job" >Mã sổ tiết kiệm:</label>
+		<input type="text" name="maso" id="maso1" placeholder="" onkeyup="ktmasoguivon(this.value)">
+		<div id="kq"></div>
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh1" placeholder="">
+		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" >
 		<label for="job">Số tiền gửi:</label>
 		<input type="text" name="sotiengui2" id="sotiengui2" placeholder="">
 		<label for="job">Ngày gửi:</label>
