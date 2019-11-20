@@ -37,13 +37,13 @@ if($row4["tenkh"] !== $tenkhachhang) { echo $tenkhachhang;}
     $sql="UPDATE sotietkiem SET sotiengui='$tiengui',ngaygui='$dinh_dang_moi',sotienlai='$tienlai' WHERE maso=$maso";
     $sql3="UPDATE `quatrinh` SET laixuat= '$laixuat1' WHERE maso=$maso";
     $sql0="INSERT INTO `phieuguitien`(`maso`, `makh`, `sotiengui`, `ngaygui`) VALUES ($maso,$makh,$sotiengui,'$ngaymoi')";
-  if ($conn->query($sql) && $conn->query($sql3) && $conn->query($sql0) === TRUE) {
-        echo  "Thêm dữ liệu thành công";
+  if ($conn->query($sql)==TRUE && $conn->query($sql3)==TRUE && $conn->query($sql0) === TRUE) {
+        echo  "ok";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 //Đóng database
-$connect->close();}
+$conn->close();}
 else{
   echo "Loại sổ này không được phép gửi thêm tiền";
  }

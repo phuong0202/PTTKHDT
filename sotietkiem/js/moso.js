@@ -1,5 +1,6 @@
 function moso_kh_cu()
 { 
+    var maso=document.getElementById("maso").value;
 	 var dskh=document.getElementById("dskh").value;
 	 var sotiengui=document.getElementById("sotiengui").value;
 	  var ngaygui=document.getElementById("datemoso").value;
@@ -13,18 +14,22 @@ function moso_kh_cu()
         dskh:dskh,
         sotiengui:sotiengui,
        ngaygui:ngaygui,
-       loaiso:loaiso
+       loaiso:loaiso,
+       maso:maso
       },
       success:function(response){
-        if($.trim(response)==="Thêm dữ liệu thành công"){
-          window.location.href="mosoguivon.php";
-          alert(response);
+        console.log(response);
+        if($.trim(response) == "ok"){
+          alert("Thêm dữ liệu thành công.");
+          window.location.href="mosoguivon.php?maso="+maso;
+          
         }else{
           alert(response);
         }
       }
     })
-            
+           
+
 
 
 

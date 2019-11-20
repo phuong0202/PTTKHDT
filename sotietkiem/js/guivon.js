@@ -17,9 +17,9 @@ function guivon() {
         ngaygui:ngaygui
       },
       success:function(response){
-        if($.trim(response)=="Thêm dữ liệu thành công"){
-          //window.location.href="mosoguivon.php";
-          alert(response);
+        if($.trim(response)=="ok"){
+          alert("Gửi vốn thành công.Tên khách hàng là : "+tenkh1+"số tiền gửi thêm là :"+sotiengui)
+          window.location.href="mosoguivon.php";
         }else{
           alert(response);
         }

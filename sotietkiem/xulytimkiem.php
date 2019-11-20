@@ -12,7 +12,7 @@ if(isset($_GET['loaitimkiem'])  && isset($_GET['data']))
 	{
 		if ($_REQUEST['loaitimkiem']=='tenkh') {
 			$datatimkiem=$_REQUEST['data'];
-			$sql11="SELECT stk.maso,stk.sotiengui,stk.ngaygui,kh.tenkh,kh.diachi,kh.socmnd,ltk.tenloai,stk.sotienlai FROM sotietkiem as stk , khachhang as kh , loaitietkiem as ltk WHERE stk.makh=kh.makh AND stk.maloai=ltk.maloai and kh.tenkh="."'$datatimkiem'";
+			$sql11="SELECT stk.maso,stk.sotiengui,stk.ngaygui,kh.tenkh,kh.diachi,kh.socmnd,ltk.tenloai,stk.sotienlai FROM sotietkiem as stk , khachhang as kh , loaitietkiem as ltk WHERE stk.makh=kh.makh AND stk.maloai=ltk.maloai and kh.tenkh like "."'%$datatimkiem%'";
 		}
 		else
 	{

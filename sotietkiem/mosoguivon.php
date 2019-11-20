@@ -159,7 +159,7 @@ if ($result->num_rows > 0) {
   <div id="mySidenav2" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
 <div class="form-style-5">
-		<form action="" onsubmit=" moso_kh_cu()" method="POST">
+		<form action=""  method="POST">
 		<fieldset>
 		<legend><span class="number">2</span> <p>Phiếu gửi tiền</p></legend>
 		<label for="job">Mã sổ tiết kiệm:</label>
@@ -182,8 +182,10 @@ else
 }
 	?>
 		<label for="job">Mã khách hàng:</label>
-		
+		<div>
 		<input type="text" name="dskh" id="dskh" required="" autofocus="">
+		<button onclick="openNav4()" class="">chọn khách hàng</button>
+	</div>
 			</optgroup>
 		</select>
 		<label for="job">Số tiền gửi:</label>
@@ -215,12 +217,12 @@ else
 		      
 		</fieldset>
 		
-		<input type="submit" value="Thêm" />
+		<input type="button" onclick="moso_kh_cu()" value="Thêm" />
 		</form>
-		<button onclick="openNav4()" class="chonkh">chọn khách hàng</button>
+		
 		<div id="mySidenav4" class="sidenav">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav4()">&times;</a>
-			<div>
+			<div id="listkh">
 			<?php
 			listkh();
 			?>
@@ -233,7 +235,7 @@ else
   <div id="mySidenav3" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
 <div class="form-style-5">
-		<form method="POST" onsubmit="return ktmoso_kh_moi() ">
+		<form method="POST" >
 		<fieldset>
 		<legend><span class="number">2</span> <p>Phiếu gửi tiền</p></legend>
 		<label for="job">Mã sổ tiết kiệm:</label>
@@ -293,7 +295,7 @@ else
 		      
 		</fieldset>
 		
-		<input type="submit" value="Thêm" />
+		<input type="button" value="Thêm" onclick="ktmoso_kh_moi()" />
 		</form>
 </div>
 </div>
@@ -302,14 +304,14 @@ else
          <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 <div class="form-style-5">
-		<form onsubmit="return guivon()" method="POST">
+		<form  method="POST">
 		<fieldset>
 		<legend><span class="number">2</span> <p>Phiếu gửi tiền</p></legend>
 		<label for="job" >Mã sổ tiết kiệm:</label>
 		<input type="text" name="maso" id="maso1" placeholder="" required="" autofocus="" onkeyup="ktmasoguivon(this.value)">
 		<div id="kq"></div>
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" onkeyup="kttenkhachhangguivon(this.value)" >
+		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]{5,25}"title="Tên khách hàng chứa ký tự lạ" onkeyup="kttenkhachhangguivon(this.value)" >
 		<div id="kqtenkh"></div>
 		<label for="job">Số tiền gửi:</label>
 		<input type="text" name="sotiengui2" id="sotiengui2" placeholder="" required="" autofocus="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">
@@ -318,13 +320,64 @@ else
 		      
 		</fieldset>
 		
-		<input type="submit" value="Gửi vốn" />
+		<input type="button" value="Gửi vốn" onclick="guivon()" />
 		</form>
+		
 </div>
 </div>
+<?php
+		if(isset($_GET['maso']))
+		{
+			$maso=$_REQUEST['maso'];
+			$sql11="SELECT stk.maso,stk.sotiengui,stk.ngaygui,kh.tenkh,kh.diachi,kh.socmnd,ltk.tenloai,stk.sotienlai FROM sotietkiem as stk , khachhang as kh , loaitietkiem as ltk WHERE stk.makh=kh.makh AND stk.maloai=ltk.maloai and stk.maso=".$maso;
+			$s="";
+    $conn11=connect();
+	$result11 = $conn11->query($sql11);
+	if($result11->num_rows > 0)
+	{
+		while($row=$result11->fetch_assoc())
+		{$dinh_dang_moi = date("d-m-Y", strtotime($row["ngaygui"]));
+			$s=$s.'<tr>
+                                                <td>'.$row["maso"].'</td>
+                                                <td>'.$row["tenkh"].'</td>
+                                                <td>'.$row["socmnd"].'</td>
+                                                <td>'.$row["diachi"].'</td>
+                                                <td>'.$dinh_dang_moi.'</td>
+                                                <td>'.$row["sotiengui"].'</td>
+                                                <td>'.$row["tenloai"].'</td>
+                                                <td>'.$row["sotienlai"].'</td>
+                                                <td>
+                                                        <button  class="btn btn-info">Sửa</button>
+                                                        <button  class="btn btn-danger">Xóa</button>
+                                                </td>   
+                                            </tr>';
+		}
+		$s='<table class="table table-hover table-striped" id="tablestk"><thead>
+                                        <th>Mã sổ tiết kiệm</th>
+                                        <th>Tên khách hàng</th>                                  
+                                        <th>Số CMND</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Ngày mở sổ</th>
+                                        <th>Số tiền gửi ban đầu</th>
+                                        <th>Loại tiết kiệm</th>
+                                        <th>Số tiền lãi</th>
+                                        <th>Thao tác</th>    
+                                    </thead>
+                                    <tbody>'.$s.' </tbody>
+                                </table>';
+
+echo $s;		
+}
+	else {
+        echo 'Không tìm thấy thông tin sổ.';
+        
+	}
+		}
+		?>
 </div>
     </div>
 </div>
+
 
 </body>
 
@@ -350,6 +403,9 @@ else
     
 
     <style type="text/css">
+    	#tablestk{
+    		color: black;
+    	}
 	.chonkh{
 		position: absolute;
 		top: 45%;
@@ -439,6 +495,7 @@ function closeNav3() {
 }
 function openNav4() {
   document.getElementById("mySidenav4").style.width = "100%";
+
 }
 
 /* Set the width of the side navigation to 0 */
@@ -565,6 +622,16 @@ window.onload= function(){
 .table input[type="button"] {
 	color: black;
 }
+#form{
+	color: white;
+}
+#form input{
+	color: black;
+}
+.timkiem
+{
+	float: left;
+}
 </style>
 </html>
 <?php
@@ -587,7 +654,25 @@ if ($result1->num_rows > 0) {
 			$table=$table.'<tr>'.$s.'</tr>';
 	}
 	$tr='<tr><td>Mã khách hàng</td><td>Tên Khách hàng</td><td>Địa chỉ </td><td>Số chứng minh nhân dân</td><td>Chọn</td></tr>';
-	echo '<table class="table"><tr>'.$tr.$table.'</table>';
+	$timkiem='<form class="form-inline my-2 my-lg-0" id="form" >
+                    <div class="col-md-4">
+                         <div>Chọn loại tìm kiếm</div>
+                            <select name="chontimkiem" id="chontimkiem">
+                                    <option value="tenkh">Tên khách hàng</option>
+                                    <option value="cmnd">CMND</option>
+                                  </select>
+                    </div>
+                        <div class="col-md-4">
+                                <div>Nhập thông tin tìm kiếm</div>
+                                    <div class="timkiem"><input class="form-control mr-sm-2" id="data" type="text" size="30" start="31" placeholder="Tìm kiếm" value=""  onkeyup="timkiemkh()" > </div>
+
+                                   <div class="timkiem"> <input class="form-control mr-sm-2" type="button" name="" value="Tìm Kiếm" onclick="timkiemkh()"> </div>
+                                
+                            </div>
+                            
+                        </form>';
+
+	echo $timkiem.'<div id="outtimkiemkh"><table class="table"><tr>'.$tr.$table.'</table></div>';
 }
 else 
 {
@@ -599,6 +684,8 @@ else
 	function chonkh(makh)
 	{
 		document.getElementById("dskh").value=makh;
+    document.getElementById("data").value="";
 		closeNav4();
+   
 	}
 </script>

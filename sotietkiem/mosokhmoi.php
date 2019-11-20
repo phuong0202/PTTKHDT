@@ -24,12 +24,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   $row = $result->fetch_assoc();
   $laixuat=$row["laixuat"];
   $sql3="INSERT INTO `quatrinh`(`maso`, `laixuat`) VALUES ($maso,$laixuat)";
-  if ($conn->query($sql) && $conn->query($sql1) && $conn->query($sql3) && $conn->query($sql0) === TRUE) {
-        echo  "Thêm dữ liệu thành công";
+  if ($conn->query($sql) == TRUE && $conn->query($sql1) == TRUE && $conn->query($sql3) ==TRUE && $conn->query($sql0) === TRUE) {
+        echo  "ok";
     } else {
-        echo "Error: " . $sql . "<br>" . $connect->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 //Đóng database
-$connect->close();
+$conn->close();
 }
 ?>

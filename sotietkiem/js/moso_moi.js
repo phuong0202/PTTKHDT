@@ -25,8 +25,9 @@ function ktmoso_kh_moi()
        diachi:diachi
       },
       success:function(response){
-        if($.trim(response)==="Thêm dữ liệu thành công"){
-          window.location.href="mosoguivon.php";
+        if($.trim(response)==="ok"){
+          alert("Thêm sổ mới thành công.")
+          window.location.href="mosoguivon.php?maso="+maso;
           alert(response);
         }else{
           alert(response);

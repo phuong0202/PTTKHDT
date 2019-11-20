@@ -104,4 +104,18 @@
 								xmlhttp.open("GET", "xulytimkiem.php?loaitimkiem="+loaitimkiem+"&data="+data, true);
 								xmlhttp.send();
 	}
+	// tìm kiếm khách hàng
+	function timkiemkh()
+	{
+		var xmlhttp = new XMLHttpRequest();
+		var data=document.getElementById("data").value;
+		var loaitimkiem=document.getElementById("chontimkiem").value;
+							xmlhttp.onreadystatechange = function() {
+								(this.readyState == 4 && this.status == 200) 
+								document.getElementById("outtimkiemkh").innerHTML = this.responseText;}
+								xmlhttp.open("GET", "xulytimkiemkh.php?loaitimkiem="+loaitimkiem+"&data="+data, true);
+								xmlhttp.send();
+	}
+
+
 </script>
