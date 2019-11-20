@@ -9,13 +9,13 @@
 								xmlhttp.send();
 							}
     //kiểm tra tên khách hàng với mã sổ rút vốn đã nhập
-    function kttenkhachhang(str){
+    function kttenkhachhangrutvon(str){
         var maso=document.getElementById("maso").value;
         var xmlhttp = new XMLHttpRequest();
 							xmlhttp.onreadystatechange = function() {
 								(this.readyState == 4 && this.status == 200) 
 								document.getElementById("kqkt1").innerHTML = this.responseText;}
-								xmlhttp.open("GET", "xulyrutvonlanhlai.php?maso="+maso+"&tenkhachhang="+str+"&h=1", true);
+								xmlhttp.open("GET", "xulyrutvonlanhlai.php?maso="+maso+"&tenkhachhang="+str+"&j=1", true);
 								xmlhttp.send();
     }
     //kiểm tra số tiền rút trong rút vốn
@@ -70,7 +70,7 @@
 								xmlhttp.send();
     }
 	//kiểm tra tên khách hàng gửi vốn
-	function kttenkhachhang(str){
+	function kttenkhachhangguivon(str){
         var maso=document.getElementById("maso1").value;
         var xmlhttp = new XMLHttpRequest();
 							xmlhttp.onreadystatechange = function() {

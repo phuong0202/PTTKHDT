@@ -65,13 +65,13 @@ if ($result->num_rows > 0) {
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active" >
                     <a href="thongke.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Thống kê</p>
+                        <i class="pe-7s-home"></i>
+                        <p>Trang chủ</p>
                     </a>
                 </li>
-                <li>
+                <li >
                     <a href="taikhoan.php">
                         <i class="pe-7s-user"></i>
                         <p>Tài khoản</p>
@@ -89,10 +89,22 @@ if ($result->num_rows > 0) {
                         <p>Rút vốn/Lãnh lãi</p>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="mosorutvon.php">
+                <li>
+                    <a href="mosoguivon.php">
                         <i class="pe-7s-piggy"></i>
                         <p>Mở sổ/gửi vốn</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuruttien.php">
+                        <i class="pe-7s-browser"></i>
+                        <p>Phiếu rút tiền</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuguitien.php">
+                        <i class="pe-7s-diskette"></i>
+                        <p>Phiếu gửi tiền</p>
                     </a>
                 </li>
                 <li>
@@ -102,7 +114,7 @@ if ($result->num_rows > 0) {
                     </a>
                 </li>
 				<li class="active-pro">
-                    <a href="upgrade.php">
+                    <a href="upgrade.html">
                         <i class="pe-7s-rocket"></i>
                         <p>Upgrade to PRO</p>
                     </a>
@@ -248,7 +260,7 @@ else
 		<input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" pattern="[a-zA-Z]{1,25}" title="Tên khách hàng chứa ký tự lạ" >
 		
 		<label for="job">Số chứng minh nhân dân:</label>
-		<input type="text" name="socmnd" id="socmnd" placeholder="" required="" autofocus="" pattern="[0-9]{9}|[0-9]{11}" title="Số CMND không hợp lệ" onchange="ktCMND(this.value)">
+		<input type="text" name="socmnd" id="socmnd" placeholder="" required="" autofocus="" pattern="[0-9]{9}|[0-9]{11}" title="Số CMND không hợp lệ" onkeyup="ktCMND(this.value)">
 		<div id="ktcmnd"></div>
 		<label for="job">Địa chỉ:</label>
 		<input type="text" name="diachi" id="diachi" placeholder="" required="" autofocus="">
@@ -297,7 +309,7 @@ else
 		<input type="text" name="maso" id="maso1" placeholder="" required="" autofocus="" onkeyup="ktmasoguivon(this.value)">
 		<div id="kq"></div>
 		<label for="job">Tên khách hàng:</label>
-		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" onkeyup="kttenkhachhang(this.value)" >
+		<input type="text" name="tenkh" id="tenkh1" placeholder="" required="" autofocus="" pattern="[a-zA-Z]" title="Tên khách hàng chứa ký tự lạ" onkeyup="kttenkhachhangguivon(this.value)" >
 		<div id="kqtenkh"></div>
 		<label for="job">Số tiền gửi:</label>
 		<input type="text" name="sotiengui2" id="sotiengui2" placeholder="" required="" autofocus="" pattern="[0-9]{7,}" title="Số tiền gửi phải lớn hơn 1 tr">

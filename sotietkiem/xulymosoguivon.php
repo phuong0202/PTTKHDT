@@ -38,9 +38,10 @@ if(isset($_GET['tenkhachhang']) && isset( $_REQUEST['maso']) && isset($_GET['h']
 if(isset($_REQUEST['tenkhachhang']) && isset($_REQUEST['CMND']))
 {
 	$conn2=connect();
-	$sql2="SELECT * FROM khachhang WHERE tenkh='".$_REQUEST['tenkhachhang']."' AND socmnd=".$_REQUEST['CMND'];
-	echo $sql2;
+	$sql2="SELECT * FROM khachhang WHERE tenkh='".$_REQUEST['tenkhachhang']."' AND socmnd='".$_REQUEST['CMND']."'";
+	//echo $sql2;
 	$result2 = $conn2->query($sql2);
+	echo 'Số CMND gồm 9 số hoặc 11 số<br>';
 	if($result2->num_rows > 0)
 	{
 		echo 'Số CMND đã tồn tại';

@@ -50,10 +50,10 @@ require 'functionajax.php';
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active" >
                     <a href="thongke.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Thống kê</p>
+                        <i class="pe-7s-home"></i>
+                        <p>Trang chủ</p>
                     </a>
                 </li>
                 <li >
@@ -68,7 +68,7 @@ require 'functionajax.php';
                         <p>Sổ tiết kiệm</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="rutvonlanhlai.php">
                         <i class="pe-7s-cash"></i>
                         <p>Rút vốn/Lãnh lãi</p>
@@ -78,6 +78,18 @@ require 'functionajax.php';
                     <a href="mosoguivon.php">
                         <i class="pe-7s-piggy"></i>
                         <p>Mở sổ/gửi vốn</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuruttien.php">
+                        <i class="pe-7s-browser"></i>
+                        <p>Phiếu rút tiền</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuguitien.php">
+                        <i class="pe-7s-diskette"></i>
+                        <p>Phiếu gửi tiền</p>
                     </a>
                 </li>
                 <li>
@@ -137,7 +149,7 @@ require 'functionajax.php';
                                     <div id="kqkt"></div>
 				                    <br>
                                     <label >Tên khách hàng:</label>
-                                    <input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" onkeyup="kttenkhachhang(this.value)">
+                                    <input type="text" name="tenkh" id="tenkh" placeholder="" required="" autofocus="" onkeyup="kttenkhachhangrutvon(this.value)">
                                     <div id="kqkt1"></div>
                                     <label >Số tiền rút:</label>
                                     <input type="number" name="sotienrut" placeholder="" required="" autofocus="" pattern="[0-9]{5,}" title="Số tiền rút phải > 50.000đ" onkeyup="kttienrut(this.value)">

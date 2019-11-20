@@ -23,12 +23,12 @@ if(isset($_GET['maso']) && isset($_GET['k']))
 	}
 	//echo "chao";
 }
-if(isset($_GET['tenkhachhang']) && isset( $_REQUEST['maso']) && isset($_GET['h']))
+if(isset($_REQUEST['tenkhachhang']) && isset( $_REQUEST['maso']) && isset($_REQUEST['j']))
 {
     $conn1=connect();
     $sql1="SELECT * FROM sotietkiem as so , khachhang as kh WHERE kh.makh=so.makh and so.maso=".$_REQUEST['maso']." AND kh.tenkh='".$_REQUEST['tenkhachhang']."'";
     $result1 = $conn1->query($sql1);
-    echo $sql1;
+    //echo $sql1;
 	if($result1->num_rows > 0)
 	{
 		echo 'Tên khách hàng đúng';
@@ -44,7 +44,7 @@ if(isset($_GET['tenkhachhang']) && isset( $_REQUEST['maso']) && isset($_REQUEST[
     $conn3=connect();
     $sql3="SELECT * FROM sotietkiem WHERE maso=".$_REQUEST['maso']."  AND sotiengui>='".$_REQUEST['sotienrut']."'";
     $result3 = $conn3->query($sql3);
-    echo $sql3;
+    //echo $sql3;
 	if($result3->num_rows > 0)
 	{
 		echo 'Số dư thích hợp';
@@ -118,7 +118,7 @@ if(isset($_GET['tenkhachhanglanh']) && isset( $_REQUEST['masolanh']) && isset($_
     $conn5=connect();
     $sql5="SELECT * FROM  sotietkiem as so , khachhang as kh WHERE kh.makh=so.makh and maso=".$_REQUEST['masolanh']." AND tenkh='".$_REQUEST['tenkhachhanglanh']."'";
     $result5 = $conn5->query($sql5);
-    echo $sql5;
+    //echo $sql5;
 	if($result5->num_rows > 0)
 	{
 		echo 'Tên khách hàng đúng';
@@ -134,7 +134,7 @@ if(isset($_GET['tenkhachhanglanh']) && isset( $_REQUEST['masolanh']) && isset($_
     $conn6=connect();
     $sql6="SELECT * FROM sotietkiem WHERE maso=".$_REQUEST['masolanh']."  AND sotienlai>='".$_REQUEST['sotienlanh']."'";
     $result6 = $conn6->query($sql6);
-    echo $sql6;
+   // echo $sql6;
 	if($result6->num_rows > 0)
 	{
 		echo 'Số dư thích hợp';
@@ -156,7 +156,7 @@ if(isset($_GET['tenkhlanh']) && isset( $_REQUEST['masolanh'])  && isset($_REQUES
 	}
     $conn7=connect();
     $sql7="INSERT INTO `phieuruttien`( `maso`, `makh`, `sotienrut`, `ngayrut`) VALUES (".$_REQUEST['masolanh'].",'".$_REQUEST['tenkhlanh']."',".$_REQUEST['sotienlanh'].",'".$_REQUEST['ngaylanh']."')";
-	echo $sql7;
+	//echo $sql7;
 	$sql10="UPDATE sotietkiem SET `sotienlai`=".$tienlaiconlai." WHERE  maso=".$_REQUEST['maso'];
 	$result10 = $conn7->query($sql10);
 	//echo $sql9;

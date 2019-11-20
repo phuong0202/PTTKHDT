@@ -47,13 +47,13 @@
             </div>
 
             <ul class="nav">
-                <li >
+                <li class="active" >
                     <a href="thongke.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Thống kê</p>
+                        <i class="pe-7s-home"></i>
+                        <p>Trang chủ</p>
                     </a>
                 </li>
-                <li class="active">
+                <li >
                     <a href="taikhoan.php">
                         <i class="pe-7s-user"></i>
                         <p>Tài khoản</p>
@@ -75,6 +75,18 @@
                     <a href="mosoguivon.php">
                         <i class="pe-7s-piggy"></i>
                         <p>Mở sổ/gửi vốn</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuruttien.php">
+                        <i class="pe-7s-browser"></i>
+                        <p>Phiếu rút tiền</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="phieuguitien.php">
+                        <i class="pe-7s-diskette"></i>
+                        <p>Phiếu gửi tiền</p>
                     </a>
                 </li>
                 <li>
