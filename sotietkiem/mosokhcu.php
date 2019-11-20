@@ -9,7 +9,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   if(isset($_POST['loaiso'])) {$loaiso=$_POST['loaiso'];}  
 		$dinh_dang_moi = date("Y-m-d", strtotime($ngaygui));
 	$sql="INSERT INTO `sotietkiem`( `makh`, `maloai`, `sotiengui`, `ngaygui`) VALUES ('$dskh','$loaiso','$sotiengui','$dinh_dang_moi')";
-	if ($conn->query($sql) === TRUE) {
+  $sql0="INSERT INTO `phieuguitien`(`maso`, `makh`, `sotiengui`, `ngaygui`) VALUES ($maso,$dskh,$sotiengui,'$dinh_dang_moi')";
+	if ($conn->query($sql) && $conn->query($sql0) === TRUE) {
         echo  "Thêm dữ liệu thành công";
     } else {
         echo "Error: " . $sql . "<br>" . $connect->error;

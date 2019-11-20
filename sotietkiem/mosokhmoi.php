@@ -14,16 +14,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST")
   if(isset($_POST['socmnd'])) {$socmnd=$_POST['socmnd'];}
   if(isset($_POST['diachi'])) {$diachi=$_POST['diachi'];}  
   if(isset($_POST['maso'])) {$maso=$_POST['maso'];}  
-		$dinh_dang_moi = date("Y-m-d", strtotime($ngaygui));
+    $dinh_dang_moi = date("Y-m-d", strtotime($ngaygui));
 
-	$sql="INSERT INTO `sotietkiem`( `makh`, `maloai`, `sotiengui`, `ngaygui`) VALUES ('$dskh','$loaiso','$sotiengui','$dinh_dang_moi')";
+  $sql="INSERT INTO `sotietkiem`( `makh`, `maloai`, `sotiengui`, `ngaygui`) VALUES ('$dskh','$loaiso','$sotiengui','$dinh_dang_moi')";
   $sql1="INSERT INTO `khachhang`(`tenkh`, `diachi`, `socmnd`) VALUES ('$tenkh','$diachi','$socmnd')";
-	$sql2="SELECT * FROM loaitietkiem WHERE maloai=$loaiso";
+  $sql0="INSERT INTO `phieuguitien`(`maso`, `makh`, `sotiengui`, `ngaygui`) VALUES ($maso,$dskh,$sotiengui,'$dinh_dang_moi')";
+  $sql2="SELECT * FROM loaitietkiem WHERE maloai=$loaiso";
   $result = $conn->query($sql2);
   $row = $result->fetch_assoc();
   $laixuat=$row["laixuat"];
   $sql3="INSERT INTO `quatrinh`(`maso`, `laixuat`) VALUES ($maso,$laixuat)";
-  if ($conn->query($sql) && $conn->query($sql1) && $conn->query($sql3) === TRUE) {
+  if ($conn->query($sql) && $conn->query($sql1) && $conn->query($sql3) && $conn->query($sql0) === TRUE) {
         echo  "Thêm dữ liệu thành công";
     } else {
         echo "Error: " . $sql . "<br>" . $connect->error;

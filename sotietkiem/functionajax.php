@@ -92,4 +92,16 @@
 								xmlhttp.open("GET", "xulymosoguivon.php?tenkhachhang="+tenkh+"&CMND="+str, true);
 								xmlhttp.send();
 	}
+	// tìm kiếm
+	function timkiem()
+	{
+		var xmlhttp = new XMLHttpRequest();
+		var data=document.getElementById("data").value;
+		var loaitimkiem=document.getElementById("chontimkiem").value;
+							xmlhttp.onreadystatechange = function() {
+								(this.readyState == 4 && this.status == 200) 
+								document.getElementById("outtimkiem").innerHTML = this.responseText;}
+								xmlhttp.open("GET", "xulytimkiem.php?loaitimkiem="+loaitimkiem+"&data="+data, true);
+								xmlhttp.send();
+	}
 </script>

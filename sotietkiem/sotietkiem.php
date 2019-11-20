@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'functionajax.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -140,17 +141,18 @@ require 'config.php';
                 <div class="row">
                         <form class="form-inline my-2 my-lg-0"  >
                     <div class="col-md-6">
-                        <div>Chọn loại tìm kiếm</div>
-                            <select name="cars">
+                         <div>Chọn loại tìm kiếm</div>
+                            <select name="chontimkiem" id="chontimkiem">
                                     
-                                    <option value="saab">Mã sổ tiết kiệm</option>
-                                    <option value="fiat">Tên khách hàng</option>
-                                    <option value="audi">CMND</option>
+                                    <option value="maso">Mã sổ tiết kiệm</option>
+                                    <option value="tenkh">Tên khách hàng</option>
+                                    <option value="cmnd">CMND</option>
                                   </select>
                     </div>
                         <div class="col-md-6">
                                 <div>Nhập thông tin tìm kiếm</div>
-                                    <input class="form-control mr-sm-2" type="text" size="30" start="31" placeholder="Tìm kiếm"   onkeyup="showsreachadmin(this.value)" >
+                                    <input class="form-control mr-sm-2" id="data" type="text" size="30" start="31" placeholder="Tìm kiếm"   onkeyup="showsreachadmin(this.value)" >
+                                    <input type="button" name="" value="Tìm Kiếm" onclick="timkiem()">
                                 
                             </div>
                         </form>
@@ -161,6 +163,7 @@ require 'config.php';
                                 <!-- <p class="category">Here is a subtitle for this table</p> -->
                             </div>
                             <div class="content table-responsive table-full-width">
+                                <div id="outtimkiem">
                                 <table class="table table-hover table-striped">
                                     <thead>
                                         <th>Mã sổ tiết kiệm</th>
@@ -171,29 +174,27 @@ require 'config.php';
                                         <th>Số tiền gửi ban đầu</th>
                                         <th>Loại tiết kiệm</th>
                                         <th>Số tiền lãi</th>
-                                        <th>Đóng sổ</th>
                                         <th>Thao tác</th>    
                                     </thead>
                                     <tbody>
                                         <br>
                                         <?php
                                         $conn=connect();
-                                        $sql="SELECT * FROM sotietkiem";
+                                        $sql="SELECT stk.maso,stk.sotiengui,stk.ngaygui,kh.tenkh,kh.diachi,kh.socmnd,ltk.tenloai,stk.sotienlai FROM sotietkiem as stk , khachhang as kh , loaitietkiem as ltk WHERE stk.makh=kh.makh AND stk.maloai=ltk.maloai";
                                         $result=$conn->query($sql);
                                         if($result->num_rows > 0)
                                         {
                                             while($row=$result->fetch_assoc())
-                                            {
+                                            {$dinh_dang_moi = date("d-m-Y", strtotime($row["ngaygui"]));
                                                 echo '<tr>
                                                 <td>'.$row["maso"].'</td>
                                                 <td>'.$row["tenkh"].'</td>
                                                 <td>'.$row["socmnd"].'</td>
                                                 <td>'.$row["diachi"].'</td>
-                                                <td>'.$row["ngaymo"].'</td>
-                                                <td>'.$row["sotienguibandau"].'</td>
-                                                <td>'.$row["maloaitietkiem"].'</td>
+                                                <td>'.$dinh_dang_moi.'</td>
+                                                <td>'.$row["sotiengui"].'</td>
+                                                <td>'.$row["tenloai"].'</td>
                                                 <td>'.$row["sotienlai"].'</td>
-                                                <td>'.$row["dongso"].'</td>
                                                 <td>
                                                         <button  class="btn btn-info">Sửa</button>
                                                         <button  class="btn btn-danger">Xóa</button>
@@ -205,7 +206,6 @@ require 'config.php';
                                         
                                         
                                     </tbody>
-                                </table>
 
                             </div>
                         </div>
